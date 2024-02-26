@@ -5,7 +5,7 @@ interface Country {
     capital: string[];
     borders: string[];
     population: number;
-    altSpelling:string[];
+    altSpellings:string[];
     flags: { png: string; svg: string; alt: string };
     maps: { googleMaps: string };
 }
@@ -64,7 +64,11 @@ const CountryInfo = ({country}: CountryInfoProps) => {
             <p>Population: {country.population}</p>
             <p>Country Borders: {country.borders.join(", ")}</p>
             <h4>Alternative Spellings</h4>
-            <ol>{country.altSpelling ? country.altSpelling.join(", ") : "None"}</ol>
+            <ol>{
+                country.altSpellings?.map((alt, i) => (
+                    <li key={i}>{alt}</li>
+                ))
+            }</ol>
             <a href={country.maps.googleMaps} target="_blank">
                 Google Maps
             </a>
